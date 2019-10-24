@@ -7,7 +7,10 @@
     <title>FriendFinder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
         <div class="jumbotron" id="jtron2">
@@ -17,7 +20,7 @@
                 <form>
                         <div class="form-group">
                           <label for="name">Name (required)</label>
-                          <input type="name" class="form-control"  placeholder="Harry Potter">
+                          <input id="name" type="name" class="form-control"  placeholder="Harry Potter">
                         </div>
                         <div class="form-group">
                           <label for="photo">Link to Photo Image (required)</label>
@@ -128,19 +131,83 @@
                      <hr class="my-4">
 
                      <button class="btn btn-primary btn-lg btn-block submit" id="submitbtn" type="submit">Find Your Friend!</button>
-                    
-               </div>
-</body>
-</html>
 
+                     <footer class="footer">
+                            <div class="container">
+                            <ul class="nav">
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="/api/friends" target="_blank">Friends API</a>
+                                  </li>
+                                  <li class="nav-item"><p class="nav-link">|</p></li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="https://github.com/teellis20" target="_blank">Github</a>
+                                  </li>
+                                  <li class="nav-item"><p class="nav-link">|</p></li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="https://teellis20.github.io" target="_blank">Portfolio</a>
+                                  </li>
+                                  <li class="nav-item"><p class="nav-link">|</p></li>
+                                  <li class="nav-item">
+                                    <a class="nav-link" href="https://www.linkedin.com/in/taylor-ellis8420/" target="_blank">LinkedIn</a>
+                                  </li>
+                                </ul>
+                                </div>
+                          </footer>
+                        </div>
+
+                     <!-- Modal -->
+                     <div class="modal fade" id="resultsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalCenterTitle">Your New Best Friend</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <h2 id="matchName"></h2>
+                                  <img id="matchImg" src="" alt="best friend">
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          
+        
 <script type="text/javascript">
 
-    $(".submit").on("click", function(event) {
+    $("#submitbtn").on("click", function(event) {
         event.preventDefault();
+        console.log("submitted");
+
+        function validateForm() {
+            var isValid = true;
+            $(".form-control").each(function() {
+                if ($(this).val() === "") {
+                    isValid = false;
+                }
+            });
+
+            $(".chosen-select").each(function() {
+                if ($(this).val() === "") {
+                    isValid = false;
+                }
+            });
+            return isValid;
+        }
+
+        if (validateForm()) {
 
         var newFriend = {
             name: $("#name").val().trim(),
-            photo: $("#profile-photo").val().trim(),
+            photo: $("#profile-photo").val(),
             scores: [
                 $("#q1").val(),
                 $("#q2").val(),
@@ -157,8 +224,34 @@
 
         console.log(newFriend);
 
-        $.post("/api/friends", newFriend, function(data) {
+        $.post("/api/friends", newFriend, function (data) {
+            console.log(data.name);
+            $("#matchName").text(data.name)
+            $("#matchImg").attr("src", data.photo);
+            $("#resultsModal").modal("toggle");
 
-        })
-    })
+
+            // $("#name").val("");
+            // $("#profile-photo").val("");
+            // $("#q1").val("");
+            // $("#q2").val("");
+            // $("#q3").val("");
+            // $("#q4").val("");
+            // $("#q5").val("");
+            // $("#q6").val("");
+            // $("#q7").val("");
+            // $("#q8").val("");
+            // $("#q9").val("");
+            // $("#q10").val("");
+        });
+    } else {
+        alert("Please fill out all fields before submitting!");
+    }
+        return false;
+    });
 </script>
+
+
+</body>
+</html>
+

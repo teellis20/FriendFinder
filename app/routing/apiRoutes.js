@@ -8,7 +8,11 @@ module.exports = function(app) {
 
     app.post("/api/friends", function(req, res) {
          // This route will also be used to handle the compatibility logic.
-        var currentScore = req.body.scores;
+        var currentScore = [];
+        var rawScore = req.body.scores;
+        for (var j = 0; j < rawScore.length; j++) {
+            currentScore.push(parseInt(rawScore[j]));
+        }
         var currentDiff = 50;
         var bestMatch; 
         currentScore = runScores(currentScore);
