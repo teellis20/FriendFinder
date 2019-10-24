@@ -7,6 +7,7 @@
     <title>FriendFinder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
 </head>
 <body>
         <div class="jumbotron" id="jtron2">
@@ -15,11 +16,11 @@
                 <h3>About You</h3>
                 <form>
                         <div class="form-group">
-                          <label for="Enter Name">Name (required)</label>
+                          <label for="name">Name (required)</label>
                           <input type="name" class="form-control"  placeholder="Harry Potter">
                         </div>
                         <div class="form-group">
-                          <label for="exampleInputPassword1">Link to Photo Image (required)</label>
+                          <label for="photo">Link to Photo Image (required)</label>
                           <input type="url" class="form-control" id="profile-photo" placeholder="http://www.photolink.com">
                         </div>
                       </form>
@@ -35,8 +36,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 2</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>You love to exercise and be active.</p>
+                     <select name="q2" id="q2">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -45,8 +46,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 3</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>You are generally a happy person.</p>
+                     <select name="q3" id="q3">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -55,8 +56,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 4</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>You love animals.</p>
+                     <select name="q4" id="q4">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -65,8 +66,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 5</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>You are very career driven.</p>
+                     <select name="q5" id="q5">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -75,8 +76,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 6</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>Family/Friends are extremely important to you.</p>
+                     <select name="q6" id="q6">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -85,8 +86,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 7</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>You're good at making people laugh.</p>
+                     <select name="q7" id="q7">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -95,8 +96,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 8</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>You constantly find it hard to pay attention.</p>
+                     <select name="q8" id="q8">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -105,8 +106,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 9</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>You'd rather go to a party, than stay in and relax at home.</p>
+                     <select name="q9" id="q9">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -115,8 +116,8 @@
                          <option value="5">5 (Strongly Agree</option>
                      </select><br>
                      <h3>Question 10</h3>
-                     <p>You are hungry all the time.</p>
-                     <select name="q1" id="q1">
+                     <p>You are constatly sleepy.</p>
+                     <select name="q10" id="q10">
                          <option value=""> </option>
                          <option value="1">1 (Strongly Disagree</option>
                          <option value="2">2</option>
@@ -126,8 +127,38 @@
                      </select><br>
                      <hr class="my-4">
 
-                     <button class="btn btn-primary btn-lg btn-block" id="submitbtn" type="submit">Find Your Friend!</button>
+                     <button class="btn btn-primary btn-lg btn-block submit" id="submitbtn" type="submit">Find Your Friend!</button>
                     
                </div>
 </body>
 </html>
+
+<script type="text/javascript">
+
+    $(".submit").on("click", function(event) {
+        event.preventDefault();
+
+        var newFriend = {
+            name: $("#name").val().trim(),
+            photo: $("#profile-photo").val().trim(),
+            scores: [
+                $("#q1").val(),
+                $("#q2").val(),
+                $("#q3").val(),
+                $("#q4").val(),
+                $("#q5").val(),
+                $("#q6").val(),
+                $("#q7").val(),
+                $("#q8").val(),
+                $("#q9").val(),
+                $("#q10").val()
+        ]
+        };
+
+        console.log(newFriend);
+
+        $.post("/api/friends", newFriend, function(data) {
+
+        })
+    })
+</script>
