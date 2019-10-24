@@ -1,0 +1,20 @@
+.jumbotron {
+    margin: 2% 15% 0 15%;
+    background-color: aqua;
+    text-align: center;
+}
+
+#jtron2 {
+    text-align: left;
+}
+
+.nav {
+    
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 12px;
+}
+
+#submitbtn {
+    background-color: white;
+    color: black;
+}
