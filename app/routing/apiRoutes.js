@@ -27,8 +27,10 @@ module.exports = function(app) {
     };
 
     console.log(bestMatch.name);
+    res.json(bestMatch)
         // This will be used to handle incoming survey results. 
         friendsData.push(req.body);
+        
         
         // console.log(req.body.scores);
         // console.log("*******");

@@ -7,10 +7,10 @@
     <title>FriendFinder</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  
 </head>
 <body>
         <div class="jumbotron" id="jtron2">
@@ -130,7 +130,7 @@
                      </select><br>
                      <hr class="my-4">
 
-                     <button class="btn btn-primary btn-lg btn-block submit" id="submitbtn" type="submit">Find Your Friend!</button>
+                     <button class="btn btn-primary btn-lg btn-block submit" id="submitbtn" type="submit" data-toggle="modal" data-target="#resultsModal">Find Your Friend!</button>
 
                      <footer class="footer">
                             <div class="container">
@@ -171,14 +171,11 @@
                                 </div>
                                 <div class="modal-footer">
                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                  <button type="button" class="btn btn-primary">Save changes</button>
                                 </div>
                               </div>
                             </div>
                           </div>
-
-
-
+                    
                           
         
 <script type="text/javascript">
@@ -224,33 +221,34 @@
 
         console.log(newFriend);
 
-        $.post("/api/friends", newFriend, function (data) {
-            console.log(data.name);
+        $.post("/api/friends", newFriend, function(data) {
+            console.log("post working")
+            
             $("#matchName").text(data.name)
             $("#matchImg").attr("src", data.photo);
-            $("#resultsModal").modal("toggle");
+    
+            
 
 
-            // $("#name").val("");
-            // $("#profile-photo").val("");
-            // $("#q1").val("");
-            // $("#q2").val("");
-            // $("#q3").val("");
-            // $("#q4").val("");
-            // $("#q5").val("");
-            // $("#q6").val("");
-            // $("#q7").val("");
-            // $("#q8").val("");
-            // $("#q9").val("");
-            // $("#q10").val("");
+            $("#name").val("");
+            $("#profile-photo").val("");
+            $("#q1").val("");
+            $("#q2").val("");
+            $("#q3").val("");
+            $("#q4").val("");
+            $("#q5").val("");
+            $("#q6").val("");
+            $("#q7").val("");
+            $("#q8").val("");
+            $("#q9").val("");
+            $("#q10").val("");
         });
     } else {
         alert("Please fill out all fields before submitting!");
     }
-        return false;
+        // return false;
     });
 </script>
-
 
 </body>
 </html>
