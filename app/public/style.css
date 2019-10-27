@@ -11,7 +11,8 @@
 
 .nav {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 12px;
+    font-size: .8rem;
+    margin: 2% 15% 0 15%;
 }
 
 
@@ -26,6 +27,13 @@ h1 {
     text-shadow: 3px 3px black;
 }
 
-#footer {
-    margin: 2% 15% 0 15%;
+.filler {
+    padding: 5px 0 0 0;
 }
+
+@media screen and (max-width: 650px) {
+    .nav ul{
+      float: none;
+      width: 100%;
+    }
+  }
